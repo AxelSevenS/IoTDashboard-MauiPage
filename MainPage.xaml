@@ -1,0 +1,21 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MqqtDashboard.MainPage">
+    <VerticalStackLayout Padding="20">
+        <Label
+            Text="MQTT Message Monitor"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Margin="0,20,0,20"
+        />
+
+        <ScrollView HeightRequest="300">
+            <Label
+                x:Name="MessagesLabel"
+                FontSize="16"
+                Text="Waiting for messages..."
+                LineBreakMode="WordWrap"
+            />
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
