@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace MqqtDashboard;
+namespace MqttDashboard;
 
 [Application]
 public class MainApplication : MauiApplication

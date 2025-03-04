@@ -2,7 +2,7 @@ using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace MqqtDashboard;
+namespace MqttDashboard;
 
 class Program : MauiApplication
 {

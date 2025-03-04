@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace MqqtDashboard;
+namespace MqttDashboard;
 
 public static class MauiProgram
 {

@@ -1,7 +1,8 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using MQTTnet;
 
-namespace MqqtDashboard;
+namespace MqttDashboard;
 
 public partial class MainPage : ContentPage
 {
@@ -20,8 +21,8 @@ public partial class MainPage : ContentPage
 	{
 		try
 		{
-			var options = new MqttClientOptionsBuilder()
-				.WithTcpServer("localhost", 1883) // Replace with your broker's IP/hostname if needed
+			MqttClientOptions options = new MqttClientOptionsBuilder()
+				.WithTcpServer("localhost", 1883)
 				.WithClientId("MauiClient")
 				.WithCleanSession()
 				.Build();

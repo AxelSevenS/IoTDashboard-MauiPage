@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace MqqtDashboard;
+namespace MqttDashboard;
 
 public class Program
 {

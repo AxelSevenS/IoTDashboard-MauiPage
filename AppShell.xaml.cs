@@ -1,4 +1,4 @@
-﻿namespace MqqtDashboard;
+﻿namespace MqttDashboard;
 
 public partial class AppShell : Shell
 {
