@@ -1,14 +1,20 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MqttDashboard.MainPage">
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			x:Class="MqttDashboard.MainPage">
 
-    <StackLayout>
-        <ListView x:Name="SteamMessages">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+	<StackLayout>
+		<ListView x:Name="SteamMessages">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextCell Text="{Binding}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<!-- Input field for Steam threshold -->
+		<Entry x:Name="SteamThresholdEntry" Placeholder="Enter Steam Threshold" />
+
+		<!-- Button to send Steam threshold -->
+		<Button Text="Set Steam Threshold" Clicked="OnSetSteamThresholdClicked" />
+	</StackLayout>
 </ContentPage>

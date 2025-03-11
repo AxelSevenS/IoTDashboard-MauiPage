@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Text;
 using MQTTnet;
 
@@ -8,8 +6,9 @@ namespace MqttDashboard;
 
 public partial class MainPage : ContentPage
 {
-	private static readonly string STEAM_TOPIC = "test/topic";
-
+	private static readonly string STEAM_TOPIC = "sensors/steam";
+	private static readonly string STEAM_BOOL_TOPIC = $"{STEAM_TOPIC}/bool";
+	private static readonly string STEAM_THRESHOLD_TOPIC = $"{STEAM_TOPIC}/threshold";
 
 	private readonly IMqttClient mqttClient;
 	private readonly ObservableCollection<string> steamHistory = [];
@@ -42,7 +41,7 @@ public partial class MainPage : ContentPage
 				// Update UI with new message
 				MainThread.BeginInvokeOnMainThread(() =>
 				{
-					if (topic == STEAM_TOPIC) {
+					if (topic == STEAM_BOOL_TOPIC) {
 						steamHistory.Insert(0, message);
 					}
 				});
@@ -51,7 +50,7 @@ public partial class MainPage : ContentPage
 			mqttClient.ConnectedAsync += async e =>
 			{
 				Console.WriteLine("Connected to MQTT broker!");
-				await mqttClient.SubscribeAsync(STEAM_TOPIC);
+				await mqttClient.SubscribeAsync(STEAM_BOOL_TOPIC);
 			};
 
 			mqttClient.DisconnectedAsync += async e =>
@@ -66,6 +65,22 @@ public partial class MainPage : ContentPage
 		{
 			Console.WriteLine($"MQTT Error: {ex.Message}");
 		}
+	}
+
+	private async void OnSetSteamThresholdClicked(object sender, EventArgs e)
+	{
+		string thresholdValue = SteamThresholdEntry.Text;
+		if (!string.IsNullOrEmpty(thresholdValue))
+		{
+			MqttApplicationMessage message = new MqttApplicationMessageBuilder()
+				.WithTopic(STEAM_THRESHOLD_TOPIC)
+				.WithPayload(thresholdValue)
+				.Build();
+
+			await mqttClient.PublishAsync(message);
+		}
+
+		Console.WriteLine("Threshold set to: " + thresholdValue);
 	}
 }
 
